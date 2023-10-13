@@ -330,7 +330,7 @@ ${botMessage.message}
         const userMessage = {
             id: crypto.randomUUID(),
             parentMessageId,
-            role: 'User',
+            role: 'user',
             message,
         };
         conversation.messages.push(userMessage);
@@ -401,7 +401,7 @@ ${botMessage.message}
         const replyMessage = {
             id: crypto.randomUUID(),
             parentMessageId: userMessage.id,
-            role: 'ChatGPT',
+            role: 'assistant',
             message: reply,
         };
         conversation.messages.push(replyMessage);
@@ -455,7 +455,7 @@ ${botMessage.message}
         };
 
         const messagePayload = {
-            role: 'system',
+            role: 'user',
             content: promptSuffix,
         };
 
