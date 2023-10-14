@@ -330,7 +330,7 @@ ${botMessage.message}
         const userMessage = {
             id: crypto.randomUUID(),
             parentMessageId,
-            role: 'user',
+            role: 'User',
             message,
         };
         conversation.messages.push(userMessage);
@@ -455,7 +455,7 @@ ${botMessage.message}
         };
 
         const messagePayload = {
-            role: 'user',
+            role: 'User',
             content: promptSuffix,
         };
 
@@ -475,7 +475,7 @@ ${botMessage.message}
         const buildPromptBody = async () => {
             if (currentTokenCount < maxTokenCount && orderedMessages.length > 0) {
                 const message = orderedMessages.pop();
-                const roleLabel = message.role === 'user' ? this.userLabel : this.chatGptLabel;
+                const roleLabel = message.role === 'User' ? this.userLabel : this.chatGptLabel;
                 const messageString = `${this.startToken}${roleLabel}:\n${message.message}${this.endToken}\n`;
                 let newPromptBody;
                 if (promptBody || isChatGptModel) {
