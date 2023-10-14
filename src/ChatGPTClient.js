@@ -72,7 +72,7 @@ export default class ChatGPTClient {
             throw new Error(`maxPromptTokens + max_tokens (${this.maxPromptTokens} + ${this.maxResponseTokens} = ${this.maxPromptTokens + this.maxResponseTokens}) must be less than or equal to maxContextTokens (${this.maxContextTokens})`);
         }
 
-        this.userLabel = this.options.userLabel || 'User';
+        this.userLabel = this.options.userLabel || 'user';
         this.chatGptLabel = this.options.chatGptLabel || 'ChatGPT';
 
         if (isChatGptModel) {
@@ -330,7 +330,7 @@ ${botMessage.message}
         const userMessage = {
             id: crypto.randomUUID(),
             parentMessageId,
-            role: 'User',
+            role: 'user',
             message,
         };
         conversation.messages.push(userMessage);
@@ -455,7 +455,7 @@ ${botMessage.message}
         };
 
         const messagePayload = {
-            role: 'User',
+            role: 'user',
             content: promptSuffix,
         };
 
@@ -475,7 +475,7 @@ ${botMessage.message}
         const buildPromptBody = async () => {
             if (currentTokenCount < maxTokenCount && orderedMessages.length > 0) {
                 const message = orderedMessages.pop();
-                const roleLabel = message.role === 'User' ? this.userLabel : this.chatGptLabel;
+                const roleLabel = message.role === 'user' ? this.userLabel : this.chatGptLabel;
                 const messageString = `${this.startToken}${roleLabel}:\n${message.message}${this.endToken}\n`;
                 let newPromptBody;
                 if (promptBody || isChatGptModel) {
